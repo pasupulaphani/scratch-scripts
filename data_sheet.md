@@ -1,43 +1,50 @@
-# Datasheet Template
+# Datasheet for Stock Price Factor Analysis Datasets
 
-As far as you can, complete the model datasheet. If you have got the data from the internet, you may not have all the information you need, but make sure you include all the information you do have. 
+## 1. Dataset Overview
 
-## Motivation
+- **Dataset Name:** Stock Price Factor Analysis Datasets
+- **Description:** This collection of datasets is used for analyzing factors impacting stock prices, combining earnings call sentiment features with various technical indicators and stock-related features.
+- **Date of Creation/Last Update:** The data itself spans up to September 17, 2020.
 
-- For what purpose was the dataset created? 
-- Who created the dataset (e.g., which team, research group) and on behalf of which entity (e.g., company, institution, organization)? Who funded the creation of the dataset?
+## 2. Data Collection
 
- 
-## Composition
+- **Methodology:** The datasets were built from two primary sources:
+    1.  **Earnings Call Sentiment Features:** Extracted from transcripts using NLP and sentiment analysis from the dataset `https://huggingface.co/datasets/jlh-ibm/earnings_call`.
+    2.  **Technical Indicators and Stock-Related Features:** Sourced from Yahoo Finance and the FRED API (https://fred.stlouisfed.org/docs/api/fred/).
+- **Collection Dates:** The data collected covers the period from at least 2015-01-14 up to 2020-09-17.
 
-- What do the instances that comprise the dataset represent (e.g., documents, photos, people, countries)? 
-- How many instances of each type are there? 
-- Is there any missing data?
-- Does the dataset contain data that might be considered confidential (e.g., data that is protected by legal privilege or by    doctor–patient confidentiality, data that includes the content of individuals’ non-public communications)?
+## 3. Data Composition
 
-## Collection process
+- **Files Included:**
+    - `data/appended_with_sentiment_features.csv`: Contains sentiment-related features.
+    - `data/full_stock_features.csv`: Contains technical indicators and stock-related features.
+- **Combined Dataset Structure:**
+    - The two datasets are merged based on `company` (ticker) and `date`.
+    - Resulting combined dataset shape: (150 entries, 159 features).
+- **Key Features (Examples):**
+    - **Earnings Call Sentiment Features:** (e.g., positive_word_freq, avg_sentiment_neu, sentiment_volatility, etc.)
+    - **Technical Indicators:** (e.g., open, high, low, close, volume, SMA_10, SMA_50, various trend, volatility, and momentum indicators like `trend_ichimoku_conv`, `momentum_kama`, `volatility_kcl`, `momentum_rsi`, `volatility_bbp`, etc.)
+    - **Other Features:** Quarterly or annual financials, Social Media & News Sentiment, Market & Macro Features (e.g., CPI, unemployment), Calendar & Event Features.
 
-- How was the data acquired? 
-- If the data is a sample of a larger subset, what was the sampling strategy? 
-- Over what time frame was the data collected?
+## 4. Preprocessing/Cleaning
 
-## Preprocessing/cleaning/labelling
+- **Merging:** Datasets were merged on `company` (ticker) and `date`.
+- **Missing Values:** Missing values in numerical features were imputed using the mean of their respective columns.
+- **Standardization:** Data was standardized before applying PCA.
+- **Dimensionality Reduction:** Principal Component Analysis (PCA) was applied to numerical features.
 
-- Was any preprocessing/cleaning/labeling of the data done (e.g., discretization or bucketing, tokenization, part-of-speech tagging, SIFT feature extraction, removal of instances, processing of missing values)? If so, please provide a description. If not, you may skip the remaining questions in this section. 
-- Was the “raw” data saved in addition to the preprocessed/cleaned/labeled data (e.g., to support unanticipated future uses)? 
- 
-## Uses
+## 5. Uses
 
-- What other tasks could the dataset be used for? 
-- Is there anything about the composition of the dataset or the way it was collected and preprocessed/cleaned/labeled that might impact future uses? For example, is there anything that a dataset consumer might need to know to avoid uses that could result in unfair treatment of individuals or groups (e.g., stereotyping, quality of service issues) or other risks or harms (e.g., legal risks, financial harms)? If so, please provide a description. Is there anything a dataset consumer could do to mitigate these risks or harms? 
-- Are there tasks for which the dataset should not be used? If so, please provide a description.
+- **Intended Use:** Analyzing factors impacting stock prices, identifying prominent factors across different time periods (pre-COVID, COVID), and building predictive models.
+- **Potential Applications:** Academic research, financial modeling, understanding market dynamics, and feature engineering for stock prediction tasks.
+- **Out-of-Scope Uses:** Not intended for direct investment advice or automated trading systems without further validation and rigorous testing.
 
-## Distribution
+## 6. Distribution
 
-- How has the dataset already been distributed? 
-- Is it subject to any copyright or other intellectual property (IP) license, and/or under applicable terms of use (ToU)?  
+- **Access:** The datasets are available within the GitHub repository: https://github.com/pasupulaphani/scratch-scripts
+- **License:** Not explicitly stated in the README. Users should refer to the GitHub repository for any licensing information.
 
-## Maintenance
+## 7. Maintenance
 
-- Who maintains the dataset?
+- **Maintenance Plan:** Not explicitly stated in the README. Users should monitor the GitHub repository for updates.
 
